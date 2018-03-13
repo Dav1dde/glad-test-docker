@@ -1,0 +1,10 @@
+#!/bin/bash
+
+trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
+
+Xvfb :1 -screen 0 800x600x24 &
+sleep 0.5s
+export DISPLAY=:1
+
+exec $@
+
