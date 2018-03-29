@@ -2,6 +2,14 @@
 
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 
+# set up wine
+rm -rf /var/lib/wine/prefix && mkdir /var/lib/wine/prefix
+export WINEPREFIX=/var/lib/wine/prefix
+export WINEDLLOVERRIDES="mscoree,mshtml="
+
+winetricks nocrashdialog
+
+# set up the Xserver
 Xvfb :1 -screen 0 800x600x24 &
 sleep 0.5s
 export DISPLAY=:1
