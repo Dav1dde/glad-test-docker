@@ -10,9 +10,12 @@ export WINEDLLOVERRIDES="mscoree,mshtml="
 winetricks nocrashdialog
 
 # set up the Xserver
-Xvfb :1 -screen 0 800x600x24 &
+Xvfb :1 -screen 0 800x600x24 +extension GLX +render &
 sleep 0.5s
 export DISPLAY=:1
+
+# set up cargo
+export CARGO_HOME=/var/lib/cargo
 
 exec $@
 
